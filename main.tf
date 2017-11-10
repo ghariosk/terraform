@@ -181,14 +181,14 @@ resource "aws_security_group" "private_app" {
   name = "vpc_private_app"
 
   ingress {
-    from_port = 0
-    to_port = 65535
+    from_port = 3000
+    to_port = 3000
     protocol = "tcp"
  
    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  
+
 
   egress {
     from_port = 0
@@ -568,14 +568,12 @@ resource "aws_autoscaling_group" "karl_scalegroup" {
   load_balancers= ["${aws_elb.karl.id}"]
   health_check_type="ELB"
   force_delete = true
-  tag {
-   key = "Name"
-   value= "karl-app"
-    propagate_at_launch = true
-  }
+ 
 
   tags {
-    Name = "karl-app"
+    key = "Name"
+    value = "karl-app"
+    propagate_at_launch = true
   }
 
   vpc_zone_identifier=["${aws_subnet.private_app.id}"]

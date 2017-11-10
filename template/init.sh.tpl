@@ -2,12 +2,26 @@
 
 cd /home/ubuntu/app
 
+
+sudo su root
+
+
 export DB_HOST=mongodb://${db_ip}/blog
 
-sleep 2
+sleep 5
 
 
-npm install && pm2 -f start app.js
+sudo npm install
+
+
+
+sleep 5
+
+
+
+
+
+pm2 -f start app.js
  
 
 
